@@ -4,7 +4,7 @@ import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   return (
     <BrowserRouter>
       <Route 
