@@ -15,10 +15,12 @@ For instance, let us suppose a certain user "Juan dela Cruz". Juan is looking fo
 It is worth noting here that Juan, the customer, did not have to exert much effort in finding the best deal. This inverted interaction is exactly what "puts customers at the forefront of every business model". At Bountiful, the customer is treated with utmost priority. This is the hook that invites more users into our platform.
 
 ## The Feed
+To more effectively connect sellers to their buyers, we implemented a simple "request feed" at the main user dashboard. The feed contains popular listings filtered by the user's preferences. A seller may, for example, configure their feed to only show requests tagged with the keywords `technology` and `laptop`. This tailors the seller's app experience according to their current inventory.
 
-## The Rating System
+## The Rating and Review System
+As a rudimentary measure of content moderation, each seller must maintain a satisfactory overall rating. Customers may leave public reviews on a seller's profile based on their experience.
 
-# In Relation to the "New Normal"
+## In Relation to the "New Normal"
 The Internet has proven itself to be an integral aspect of the modern lifestyle. Despite the disruptive consequences of a global pandemic, the Internet has further cemented its role as the unifying force that keeps the world connected.
 
 # Building from Source
