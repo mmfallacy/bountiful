@@ -1,7 +1,19 @@
 {
   "name": "bountiful",
+  "description": "Bountiful is a competitive e-commerce platform that puts customers at the forefront of every business model.",
+  "author": "Michael Monasterial <monasterialma@gmail.com>",
+  "contributors": [
+      "Paul Dayag <dayag.vanpaul@gmail.com>",
+      "Garth Lapitan <garthlapitan.up@gmail.com>",
+      "Basti Ortiz <ortizbasti16@gmail.com>"
+  ],
+  "homepage": "https://github.com/mmfallacy/bountiful#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmfallacy/bountiful.git"
+  },
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
