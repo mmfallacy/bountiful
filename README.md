@@ -8,7 +8,7 @@ Traditional e-commerce plaforms (such as [Lazada](https://www.lazada.com.ph) and
 
 At Bountiful, we turn this concept on its head. It is now up to the user to post a public listing that expresses their _request_ for a specific product. By inverting this fundamental interaction, the sellers must now compete against each other by directly _offering_ the best deals to the user.
 
-For instance, let us suppose a certain user "Juan dela Cruz". Juan is looking for a pair of black sneakers. In a traditional e-commerce platform, Juan would have to manually search the platform's database for the best deal. At Bountiful, Juan would only need to post a listing. Juan would provide the appropriate images, descriptions, and budget range for his requested product. After this point, the sellers at the platform would compete to offer Juan the best deals. This is analogous to an auction bidding. Once Juan is happy with a deal, he would mark his listing as "done".
+For instance, let us suppose a certain user "Juan dela Cruz". Juan is looking for a pair of black sneakers. In a traditional e-commerce platform, Juan would have to manually search the platform's database for the best deal. At Bountiful, Juan would only need to post a listing. Juan would provide the appropriate images, descriptions, and budget range for his requested product. After this point, the sellers at the platform would compete to offer Juan the best deals. This is analogous to bounties and auction biddings. Once Juan is happy with a deal, he would mark his listing as "done".
 
 > **DISCLAIMER:** Messengers and communication channels are beyond the scope of this application. This is why all users must provide their contact details in their respective profiles.
 
@@ -21,7 +21,9 @@ To more effectively connect sellers to their buyers, we implemented a simple "re
 As a rudimentary measure of content moderation, each seller must maintain a satisfactory overall rating. Customers may leave public reviews on a seller's profile based on their experience.
 
 ## In Relation to the "New Normal"
-The Internet has proven itself to be an integral aspect of the modern lifestyle. Despite the disruptive consequences of a global pandemic, the Internet has further cemented its role as the unifying force that keeps the world connected.
+The pervasive consequences of a global pandemic have further cemented technology as an integral aspect of the modern lifestyle. In traversing this "New Normal", we must rely on the power of technology to keep us connected despite the implementation of social distancing measures.
+
+With that said, Bountiful provides a competitive digital platform for empowering the customer as the utmost priority. In the "New Normal", gone are the days when customers have to manually search for the best deals themselves—such as in the case of malls and traditional e-commerce platforms. At Bountiful, modern technology allows us to foster a platform where the customer is treated like royalty. After all, the Filipino people deserve no less.
 
 # Building from Source
 The front-end prototype was developed with [Node.js v15](https://nodejs.org/en/blog/release/v15.3.0/) using the [React framework](https://reactjs.org) for JavaScript. Instead of NPM, we used [Classic Yarn](https://classic.yarnpkg.com/lang/en/) as our package manager.
