@@ -3,7 +3,8 @@
 .ListCard {
   height: 90px;
   padding: 15px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -16,9 +17,16 @@
 
   .Info {
     margin-left: 15px;
+    width: calc(100% - 120px);
 
-    .Name {
+    .Label {
       color: $secondary;
+    }
+
+    .Desc {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .Price {
