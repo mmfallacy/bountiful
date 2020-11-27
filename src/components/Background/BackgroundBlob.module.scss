@@ -1,0 +1,19 @@
+.BlobBg{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    top:0;
+    left:0;
+    overflow: hidden;
+    .Blob1{
+        position: absolute;
+        left: -18%;
+        top: 4%;
+    }   
+    .Blob2{
+        position: absolute;
+        top: -7%;
+        right:-22%;
+    }
+}

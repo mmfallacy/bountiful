@@ -1,0 +1,14 @@
+@import '../../globals';
+
+.PrimaryButton{
+    padding:15px 45px;
+    background-color: $secondary;
+    border:none;
+    border-radius: 10px;
+
+    .Label{
+        color:white;
+        font-family: 'Rubik';
+        font-size:2.25rem;
+    }
+}
