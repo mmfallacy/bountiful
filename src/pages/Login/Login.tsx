@@ -17,7 +17,7 @@ function Login() {
                     label="Login with Google"
                 />
                 <br/>
-                <span className={Style.Secondary}>Don't have an account? <button>Sign up</button></span>
+                <h4 className={Style.Secondary}>Don't have an account? <button>Sign up</button></h4>
             </div>
         </div>
     )

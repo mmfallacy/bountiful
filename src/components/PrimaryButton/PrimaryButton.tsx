@@ -9,7 +9,7 @@ interface PrimaryButtonProps{
 export default function PrimaryButton({label}: PrimaryButtonProps){
     return (
         <button className={Style.PrimaryButton}>
-            <span className={Style.Label}>{label}</span>
+            <h3 className={Style.Label}>{label}</h3>
         </button>
     )
 }
