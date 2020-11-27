@@ -19,7 +19,11 @@ function App() {
       <Route
         exact
         path="/login"
-        component={Login}
+        render={()=>
+          isLoggedIn?
+          <Redirect to="/"/>
+          : <Login />
+        }
       />
     </BrowserRouter>
   );
