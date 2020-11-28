@@ -23,6 +23,7 @@ export class BackendFacade {
   /**
    * @param {Object} credentials - This represents the JSON containing the
    * Google Cloud Platform credentials.
+   * @see Firebase Documentation {@link https://firebase.google.com/docs/reference/js/firebase#initializeapp}
    */
   constructor(credentials) {
     /** @type {firebase.app.App} */
@@ -44,6 +45,7 @@ export class BackendFacade {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
+      // TODO: Implement proper way of editing bio
       bio: "Lorem ipsum.",
       // TODO: Implement proper rating system
       karma: Math.random(),
