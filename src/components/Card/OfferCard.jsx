@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as ArrowOpenSvg } from "./ArrowOpen.svg";
-import Reputation from "./Reputation";
+import Reputation from "../Reputation/Reputation";
 import Style from "./Card.module.scss";
 
 export default function OfferCard({ imgSrc, seller: { pfp, name, reputation }, offer, product }) {

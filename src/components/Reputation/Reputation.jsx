@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as MedalSvg } from "./Medal.svg";
 import { ReactComponent as HalfMedalSvg } from "./HalfMedal.svg";
-import Style from "./Card.module.scss";
+import Style from "./Reputation.module.scss";
 
 export default function Reputation({ score }) {
   const medals = [];
