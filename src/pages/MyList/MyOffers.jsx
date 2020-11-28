@@ -1,7 +1,5 @@
 import React from "react";
-import BackgroundBlob from "../../components/Background/BackgroundBlob";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import MyOfferCard from "../../components/Card/MyOfferCard";
+import {BackgroundBlob, PageHeader, MyOfferCard} from "../../components"
 import Style from "./MyList.module.scss";
 
 export default function MyOffers(/* { requests } */) {

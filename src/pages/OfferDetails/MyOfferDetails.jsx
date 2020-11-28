@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactComponent as DeleteSvg } from "./DeleteSvg.svg";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import Reputation from "../../components/Reputation/Reputation";
+import {PageHeader} from "../../components";
 import Style from "./OfferDetails.module.scss";
 
 export default function OfferDetails(/* { imgSrc, seller: { pfp, name, reputation }, offer, product, desc } */) {

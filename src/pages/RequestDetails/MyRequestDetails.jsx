@@ -1,7 +1,5 @@
 import React from "react";
-import BackgroundBlob from "../../components/Background/BackgroundBlob";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import OfferCard from "../../components/Card/OfferCard";
+import {BackgroundBlob, PageHeader, OfferCard} from "../../components"
 import Style from "./RequestDetails.module.scss";
 
 export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {

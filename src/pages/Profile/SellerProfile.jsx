@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactComponent as EditSvg } from "./EditSvg.svg";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import Reputation from "../../components/Reputation/Reputation";
+import {PageHeader, Reputation} from "../../components";
 import Style from "./Profile.module.scss";
 
 export default function MyProfile({ pfp, name, email, bio, reputation }) {

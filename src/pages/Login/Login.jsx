@@ -1,6 +1,5 @@
 import React from 'react'
-import BackgroundBlob from '../../components/Background/BackgroundBlob'
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
+import {BackgroundBlob, PrimaryButton} from '../../components'
 import Style from './Login.module.scss'
 
 function Login() {

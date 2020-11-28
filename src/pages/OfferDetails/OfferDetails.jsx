@@ -1,6 +1,5 @@
 import React from "react";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import Reputation from "../../components/Reputation/Reputation";
+import {PageHeader, Reputation} from "../../components";
 import Style from "./OfferDetails.module.scss";
 
 export default function OfferDetails(/* { imgSrc, seller: { pfp, name, reputation }, offer, product, desc } */) {

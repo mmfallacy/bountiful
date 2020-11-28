@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import BackgroundBlobRepeat from "../../components/Background/BackgroundBlobRepeat";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import FeedCard from "../../components/Card/FeedCard";
-import Navbar from "../../components/Navbar/Navbar";
+import {BackgroundBlobRepeat, FeedCard, SearchBar, Navbar} from "../../components"
 
 import Style from "./Main.module.scss";
 
