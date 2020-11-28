@@ -18,6 +18,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDutyqwretyuretuyer",
+      budget: 100,
       price: 150,
       description:
         "What was beyond the bend in the stream was unknown. Both were curious, but only one was brave enough to want to explore. That was the problem. There was always one that let fear rule her life.",
@@ -30,6 +31,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDfpaowejpweo",
+      budget: 100,
       price: 120,
       description:
         "I recollect that my first exploit in squirrel-shooting was in a grove of tall walnut-trees that shades one side of the valley. I had wandered into it at noontime, when all nature is peculiarly quiet, and was startled by the roar of my own gun, as it broke the Sabbath stillness around and was prolonged and reverberated by the angry echoes.",
@@ -42,6 +44,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDkfnkvfdkfdkdf",
+      budget: 100,
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
@@ -54,6 +57,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDkfnkvfdkfdkdf",
+      budget: 100,
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
@@ -66,6 +70,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDkfnkvfdkfdkdf",
+      budget: 100,
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
@@ -78,6 +83,7 @@ export default function RequestDetails(/*{ imgSrc, product, budget, desc }*/) {
     {
       productName: "Black lamb",
       requestId: "IDkfnkvfdkfdkdf",
+      budget: 100,
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
