@@ -3,10 +3,9 @@ $secondary: #4b8078;
 $primary: #f9aa50;
 $gray-300: #f2f2f2;
 $gray-400: #bdbdbd;
-$white: #FFFFFF;
+$white: #ffffff;
 
-
-h1 { 
+h1 {
   font-size: 3.5rem;
   font-weight: 500;
 }
@@ -27,13 +26,14 @@ p {
   font-size: 1.75rem;
 }
 
-%clearbutton{
+%clearbutton {
   background: none;
-  border:none;
+  border: none;
 }
-%pagediv{
- height:100%;
- width:100%;
- padding-top:80px;
- position: relative;
+%pagediv {
+  height: 100%;
+  width: 100%;
+  padding-top: 80px;
+  position: relative;
+  overflow-x: hidden;
 }
