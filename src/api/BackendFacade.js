@@ -10,6 +10,7 @@ import 'firebase/firestore';
  * @property {string} bio - Bio description of the user
  * @property {number} karma - Rating of the user from 0.0 to 1.0
  * @property {string[]} listings - Array of listing IDs posted by the user
+ * @property {string[]} offers - Array of offer IDs posted by the user
  * @property {string} pfp - URL to the profile picture
  */
 
@@ -86,6 +87,7 @@ export class BackendFacade {
         // TODO: Implement proper rating system
         karma: Math.random(),
         listings: [],
+        offers: [],
         pfp,
       };
       await collection.add(this._user);
@@ -228,6 +230,11 @@ export class BackendFacade {
     const listingOfferIds = listingSnapshot.get('offers');
     listingOfferIds.push(offerRef.id);
     await listingSnapshot.ref.update('offers', listingOfferIds);
+
+    // Update user information to reflect new offer
+    this._user.offers.push(offerRef.id);
+    const userSnapshot = await db.collection('users').where('uid', '==', this._user.uid).get();
+    await userSnapshot.docs[0].ref.update('offers', this._user.offers);
 
     return { id: offerRef.id, ...offer };
   }
