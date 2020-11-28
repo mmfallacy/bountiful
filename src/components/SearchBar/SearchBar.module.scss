@@ -26,7 +26,7 @@
     width: calc(100% - 65px);
     border: none;
     color: $secondary;
-    font-size: 2.25rem;
+    font-size: 2rem;
 
     &::-webkit-input-placeholder {
       color: $secondaryFaded;
@@ -34,8 +34,8 @@
 
     &::-webkit-search-cancel-button {
       -webkit-appearance: none;
-      height: 3rem;
-      width: 3rem;
+      height: 2.5rem;
+      width: 2.5rem;
       background: url("https://api.iconify.design/ion-close-circle.svg") no-repeat 50% 50%;
       filter: invert(48%) sepia(14%) saturate(918%) hue-rotate(121deg) brightness(92%) contrast(91%); // $secondary
       background-size: contain;
