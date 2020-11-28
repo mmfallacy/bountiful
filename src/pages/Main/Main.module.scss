@@ -3,4 +3,31 @@
 .Main {
   @extend %pagediv;
   padding: 0;
+
+  .Header {
+    width: 100vw;
+    display: flex;
+
+    .Pfp {
+      margin: 24px;
+      margin-left: auto;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+
+  .Content {
+    @extend %bodybox;
+
+    .Greetings {
+      margin-bottom: 10px;
+      color: $gray-500;
+    }
+
+    .Label {
+      margin-top: 25px;
+      color: $secondary;
+    }
+  }
 }
