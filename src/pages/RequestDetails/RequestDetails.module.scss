@@ -1,0 +1,44 @@
+@import "../../globals";
+
+.RequestDetails {
+  margin-top: 80px;
+  background: $gray-100;
+
+  .ProductImage {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .Info {
+    background: white;
+    z-index: 3;
+    position: sticky;
+    top: 80px;
+    padding: 15px 24px 7.5px 24px;
+
+    .Label {
+      color: $secondary;
+    }
+
+    .Price {
+      color: $gray-400;
+    }
+  }
+
+  .Desc {
+    background: white;
+    padding: 0 24px 15px 24px;
+    text-align: justify;
+  }
+
+  .Offers {
+    @extend %bodybox;
+    position: relative;
+
+    .OffersLabel {
+      padding-top: 20px;
+      color: $gray-400;
+    }
+  }
+}
