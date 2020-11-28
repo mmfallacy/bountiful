@@ -2,7 +2,7 @@ import React from "react";
 import { ReactComponent as ArrowOpenSvg } from "./ArrowOpen.svg";
 import Style from "./Card.module.scss";
 
-export default function RequestCard({ imgSrc, product, budget }) {
+export default function MyRequestCard({ imgSrc, product, budget }) {
   return (
     <div className={`${Style.Card} ${Style.ListCard} ${!imgSrc && Style.noImage}`}>
       {imgSrc && <img className={Style.Image} src={imgSrc} alt={product} />}
