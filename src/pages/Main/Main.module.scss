@@ -1,0 +1,6 @@
+@import "../../globals";
+
+.Main {
+  @extend %pagediv;
+  padding: 0;
+}
