@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 
-import {Login, Main, NewOffer, NewRequest, Test} from './pages/index';
+import {
+  Login, Main, NewOffer, 
+  NewRequest, Test, MyRequests, MyOffers,
+} from './pages';
 
 
 const mockProductListing = [ {
@@ -53,7 +56,11 @@ function App() {
       />
       <Route
         path="/myrequests"
-
+        component={MyRequests}
+      />
+      <Route
+        path="/myoffers"
+        component={MyOffers}
       />
       <Route
         path="/listing/:productId/newoffer"
