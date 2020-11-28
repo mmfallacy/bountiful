@@ -7,7 +7,8 @@ import {useRequestFormStore} from '../../store/FormStore'
 import {useForm} from 'react-hook-form'
 import {FormInput, ImageInput} from '../../components/FormInput/FormInput'
 
-export default function NewRequest({productId}) {
+export default function NewRequest(props) {
+    const productId = parseInt(props.match.params.productId)
     const backRef = React.createRef()
 
     const update = useRequestFormStore(state=>state.update)
@@ -15,7 +16,6 @@ export default function NewRequest({productId}) {
     const formData = useRequestFormStore(state=>state.data)
 
     const {handleSubmit, error, register} = useForm()
-
     return (
         <div className={Style.NewRequest}>
             <PageHeader 

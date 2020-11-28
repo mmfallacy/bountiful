@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Style from './NewOffer.module.scss'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
@@ -8,15 +8,10 @@ import {useForm} from 'react-hook-form'
 import {FormInput, ImageInput} from '../../components/FormInput/FormInput'
 import Card from '../../components/Card/MyRequestCard'
 
-const mockProductObj = {
-    imgSrc: "https://via.placeholder.com/150",
-    name: "Black Lamp",
-    budget: 120,
-    id:213125
-}
+
 
 export default function NewOffer({productObj}) {
-    productObj=mockProductObj
+
     const backRef = React.createRef()
 
     const update = useRequestFormStore(state=>state.update)
