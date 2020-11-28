@@ -3,10 +3,18 @@ import Style from './NewRequest.module.scss'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
 import {MultiStepForm, Step} from '../../components/MultiStepForm/MultiStepForm'
-
+import {useRequestFormStore} from '../../store/FormStore'
+import {useForm} from 'react-hook-form'
+import {FormInput, ImageInput} from '../../components/FormInput/FormInput'
 
 export default function NewRequest() {
     const backRef = React.createRef()
+
+    const update = useRequestFormStore(state=>state.update)
+    const reset = useRequestFormStore(state=>state.reset)
+    const formData = useRequestFormStore(state=>state.data)
+
+    const {handleSubmit, error, register} = useForm()
 
     return (
         <div className={Style.NewRequest}>
@@ -15,40 +23,49 @@ export default function NewRequest() {
                 ref={{backRef}}
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
-
+            <button onClick={()=>console.log(formData)} >abc</button>
             <MultiStepForm className={Style.MultiStepForm}
                 onSubmit={(e)=>{
                     console.log("Submitted")
+                    console.log(formData)
+                    alert("Submitted Request!")
                 }}
                 onLastBack={(e)=>{
                     console.log("Back")
                 }}
+                onStepperClick={handleSubmit((data)=>update(data))}
                 backRef={backRef}
             >
                 <Step>
                     <FormInput 
                         label="What do you intend to buy?"
                         placeholder="Food, Gadgets..."
+                        ref={register}
+                        name="productName"
                     />
 
                     <section className={Style.FormInput}>
                         <h3>For around how much?</h3>
                         <div className={`${Style.Input} ${Style.Number}`}>
                             <h3>Php</h3>
-                            <input className={Style.ActualInput} type="number" />
+                            <input className={Style.ActualInput} ref={register} name="price" type="number" />
                         </div>
                     </section>
                 </Step>
                 <Step>
                     <FormInput 
-                        label="What do you intend to buy?"
-                        placeholder="Food, Gadgets..."
+                        label="How can you describe what you're looking for?"
+                        placeholder="It looks like ..."
                         variant="textarea"
+                        ref={register}
+                        name="description"
                     />
                 </Step>
                 <Step>
                     <ImageInput 
                         label="What does this item look like?" 
+                        ref={register}
+                        name="productImage"
                     />
                 </Step>
             </MultiStepForm>
@@ -58,45 +75,3 @@ export default function NewRequest() {
     )
 }
 
-function FormInput({label, placeholder, variant}){
-
-    return(
-        <section className={Style.FormInput}>
-            <h3>{label}</h3>
-            { variant === "textarea"?
-                <textarea className={Style.Input} placeholder={placeholder} />
-                :    <input className={Style.Input} placeholder={placeholder}/>
-            }
-        </section>
-    )
-}
-
-function ImageInput({name="image", label}){
-    const fileRef = React.createRef()
-    const reader = new FileReader()
-    
-    const [image, setImage] = useState(null)
-
-    const removeImage = ()=>{
-        setImage(null)
-    }
-
-    const handleFileInput = (e)=>{
-        if (e.target.files[0])
-        reader.readAsDataURL(e.target.files[0])
-        reader.onload = r => setImage(r.target.result)
-    }
-
-    return(
-        <section className={Style.ImageInput}>
-            <h3>{label}</h3>
-            <div className={Style.ImageContainer}>
-                <img src={image} alt="Product" className={`${image ? '':Style.Hidden}`} onDoubleClick={removeImage}/>
-            </div>
-            <label htmlFor={name} className={Style.Upload}>
-                <h3>Add a Photo</h3>
-            </label>
-            <input ref={fileRef} hidden type="file" onChange={handleFileInput} id={name} name={name} accept="image/png, image/jpeg"/>
-        </section>
-    )
-}

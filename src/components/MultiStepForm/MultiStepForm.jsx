@@ -3,7 +3,7 @@ import Style from './MultiStepForm.module.scss'
 import FormStepper from './FormStepper/FormStepper'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
-export function MultiStepForm({className, children, onSubmit, backRef, onLastBack}) {
+export function MultiStepForm({className, children, onSubmit, backRef, onLastBack, onStepperClick}) {
     const formContent = React.Children.toArray(children)
 
     const isValidChild = (element) => React.isValidElement(element) && element.type.name === "Step"
@@ -16,8 +16,9 @@ export function MultiStepForm({className, children, onSubmit, backRef, onLastBac
     const onSubmitHandler = (e)=>{
         e.preventDefault()
         setActiveStep(step=>{
+            onStepperClick(e)
             if(step > steps-1){
-                onSubmit(e)
+                setTimeout(()=>onSubmit(e), 1000)
                 return 1
             }
             return step + 1
@@ -42,7 +43,7 @@ export function MultiStepForm({className, children, onSubmit, backRef, onLastBac
         }
     }, [backRef])
 
-    const [activeStep, setActiveStep] = useState(3) 
+    const [activeStep, setActiveStep] = useState(1) 
     const steps = formContent.length
 
     return (
@@ -55,7 +56,7 @@ export function MultiStepForm({className, children, onSubmit, backRef, onLastBac
             <div className={Style.FormStepContainer}>
                 {React.cloneElement(formContent[activeStep-1])}
             </div>
-            <Stepper />
+            <Stepper label={activeStep>steps-2?"Confirm":"Next"}/>
         </form>
     )
 }
@@ -66,10 +67,10 @@ export function Step({children}){
     )
 }
 
-export function Stepper(){
+export function Stepper({label}){
     return(
         <PrimaryButton 
-            label="Next"
+            label={label}
             variant="h4"
         />
     )
