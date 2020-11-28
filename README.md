@@ -28,7 +28,9 @@ With that said, Bountiful provides a competitive digital platform for empowering
 # Building from Source
 The front-end prototype was developed with [Node.js v15](https://nodejs.org/en/blog/release/v15.3.0/) using the [React framework](https://reactjs.org) for JavaScript. Instead of NPM, we used [Classic Yarn](https://classic.yarnpkg.com/lang/en/) as our package manager.
 
-Assuming that both Node.js and Yarn have been installed, the project can be hosted locally using the commands below:
+Note that some of our dependencies make use of native Node modules. These require [Python 2](https://www.python.org/downloads/release/python-2718/) and some platform-specific build toolchains in order to compile successfully. Please consult the [`node-gyp` documentation](https://github.com/nodejs/node-gyp#installation) for more information.
+
+Assuming that all prerequisites have been installed, the project can be hosted locally using the commands below:
 ```bash
 # Clone the Git repository
 git clone https://github.com/mmfallacy/bountiful.git
