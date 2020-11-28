@@ -4,6 +4,7 @@ import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import {
   Login, Main, NewOffer, 
   NewRequest, Test, MyRequests, MyOffers,
+  MyProfile, SellerProfile
 } from './pages';
 
 
@@ -11,25 +12,25 @@ const mockProductListing = [ {
   imgSrc: "https://via.placeholder.com/150",
   name: "Blackwqe",
   budget: 120,
-  id:1
+  id:'1'
 },
 {
   imgSrc: "https://via.placeholder.com/150",
   name: "Black 222Lamp",
   budget: 120,
-  id:2
+  id:'2'
 },
 {
   imgSrc: "https://via.placeholder.com/150",
   name: "Black ggaLamp",
   budget: 120,
-  id:3
+  id:'3'
 },
 {
   imgSrc: "https://via.placeholder.com/150",
   name: "Bla2ck Lamp",
   budget: 120,
-  id:4
+  id:'4'
 }]
 
 function App() {
@@ -63,9 +64,17 @@ function App() {
         component={MyOffers}
       />
       <Route
+        path="/myaccount"
+        component={MyProfile}
+      />
+      <Route
+        path="/account/:uid"
+        component={SellerProfile}
+      />
+      <Route
         path="/listing/:productId/newoffer"
         component={(props)=>{
-          const productId = parseInt(props.match.params.productId)
+          const productId = props.match.params.productId
           const productObj = mockProductListing.filter((el)=>el.id===productId)[0]
           if (!productObj) return <Redirect to="/" />
           return <NewOffer productObj={productObj} />
