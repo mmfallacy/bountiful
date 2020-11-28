@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
-import NewRequest from './pages/NewRequest/NewRequest';
+import NewOffer from './pages/NewOffer/NewOffer';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         path="/"
         render={()=>
           isLoggedIn?
-          <NewRequest />
+          <NewOffer />
           : <Redirect to="/login" />
         }
       />

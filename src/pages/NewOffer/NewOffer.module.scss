@@ -8,6 +8,16 @@
 .BackgroundBlob{
     opacity:.6
 }
+.CardContainer{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    color:$secondary;
+    &>h3{
+        width:100%;
+        text-align: center;
+    }
+}
 @import '../../globals';
 .FormInput{
     color: $secondary;

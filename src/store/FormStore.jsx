@@ -6,6 +6,7 @@ export const useRequestFormStore = create(set => ({
         price: null,
         description: null,
         productImage: null,
+        productId: null,
     },
     update: (data) => set( state => ({...state, data:{...state.data, ...data}})),
     reset: () => set(state=>({...state,data:{
@@ -13,6 +14,27 @@ export const useRequestFormStore = create(set => ({
         price: null,
         description: null,
         productImage: null,
+        productId: null,
+    }}))
+
+}))
+
+
+export const useOfferFormStore = create(set => ({
+    data:{
+        productName: null,
+        price: null,
+        description: null,
+        productImage: null,
+        productId: null,
+    },
+    update: (data) => set( state => ({...state, data:{...state.data, ...data}})),
+    reset: () => set(state=>({...state,data:{
+        productName: null,
+        price: null,
+        description: null,
+        productImage: null,
+        productId: null,
     }}))
 
 }))
