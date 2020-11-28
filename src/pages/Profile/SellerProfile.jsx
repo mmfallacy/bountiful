@@ -14,7 +14,10 @@ export default function MyProfile({ pfp, name, email, bio, reputation }) {
           <h1>{name}</h1>
           <p>{email}</p>
           <p>{bio}</p>
-          <Reputation score={reputation} />
+          <div className={Style.RepContainer}>
+            <p>Reputation: </p>
+            <Reputation score={reputation} />
+          </div>
         </div>
       </div>
     </div>

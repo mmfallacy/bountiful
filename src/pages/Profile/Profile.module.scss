@@ -20,7 +20,12 @@
 
     p {
       color: $gray-400;
-      margin-bottom: 5px;
+      margin: 2px 5px;
+    }
+
+    .RepContainer {
+      margin-top: 15px;
+      display: flex;
     }
   }
 }
