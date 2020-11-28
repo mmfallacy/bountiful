@@ -121,6 +121,18 @@ export class BackendFacade {
   }
 
   /**
+   * @param {string[]} uids
+   * @returns {Promise<User[]>}
+   */
+  async retrieveMultipleUsersById(uids) {
+    const db = this._app.firestore();
+    const snapshots = await db.collection('users').where('uid', 'in', uids).get();
+
+    // @ts-expect-error
+    return snapshots.docs.map(doc => doc.data());
+  }
+
+  /**
    * @param {string} title
    * @param {string} description
    * @param {number} price
