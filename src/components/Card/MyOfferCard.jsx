@@ -1,6 +1,5 @@
 import React from "react";
 import { ReactComponent as ArrowOpenSvg } from "./ArrowOpen.svg";
-import Reputation from "./Reputation";
 import Style from "./Card.module.scss";
 
 export default function RequestCard({ imgSrc, product, budget, offer }) {
