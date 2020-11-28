@@ -2,7 +2,7 @@
 
 .SearchBar {
   background: none;
-  height: 50px;
+  height: 40px;
   width: 100%;
   border: $secondary 2px solid;
   border-radius: 10px;
@@ -27,6 +27,7 @@
     border: none;
     color: $secondary;
     font-size: 2rem;
+    background: none;
 
     &::-webkit-input-placeholder {
       color: $secondaryFaded;
