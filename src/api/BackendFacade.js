@@ -19,7 +19,7 @@ import 'firebase/firestore';
  * @property {string} author - User ID of the person who posted the listing
  * @property {string} title
  * @property {string} description
- * @property {number} price
+ * @property {number} budget
  * @property {string[]} offers - Array of offers posted by sellers
  * @property {string} photo - URL to the photo (may be a data URL)
  */
@@ -165,11 +165,11 @@ export class BackendFacade {
   /**
    * @param {string} title
    * @param {string} description
-   * @param {number} price
+   * @param {number} budget
    * @param {string} photo - Data URL of the photo uploaded
    * @returns {Promise<Listing>}
    */
-  async createListing(title, description, price, photo) {
+  async createListing(title, description, budget, photo) {
     const user = this.user;
     if (!user)
       throw new Error('There is no user logged in!');
@@ -181,7 +181,7 @@ export class BackendFacade {
       author: user.uid,
       title,
       description,
-      price,
+      budget,
       offers: [],
       photo,
     };
