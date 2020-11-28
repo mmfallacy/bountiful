@@ -1,14 +1,4 @@
-@import "../../globals";
-.NewRequest{
-    @extend %pagediv;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-.BackgroundBlob{
-    opacity:.6
-}
-
+@import '../../globals';
 .FormInput{
     color: $secondary;
     display:flex;

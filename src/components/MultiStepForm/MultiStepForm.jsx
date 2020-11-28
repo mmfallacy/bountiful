@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Style from './MultiStepForm.module.scss'
 import FormStepper from './FormStepper/FormStepper'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
-export function MultiStepForm({className, children, onSubmit}) {
+export function MultiStepForm({className, children, onSubmit, backRef, onLastBack, onStepperClick}) {
     const formContent = React.Children.toArray(children)
 
     const isValidChild = (element) => React.isValidElement(element) && element.type.name === "Step"
@@ -15,14 +15,33 @@ export function MultiStepForm({className, children, onSubmit}) {
 
     const onSubmitHandler = (e)=>{
         e.preventDefault()
-        if(activeStep > steps-1){
-            onSubmit(e)
-            setActiveStep(1)
-        }
-        else
-            setActiveStep(step=>step+1)
+        setActiveStep(step=>{
+            onStepperClick(e)
+            if(step > steps-1){
+                setTimeout(()=>onSubmit(e), 1000)
+                return 1
+            }
+            return step + 1
+        })
     }
 
+    const onBackHandler = (e)=>
+        setActiveStep(step=>{
+            if(step < 2){
+                onLastBack()
+                return step
+            }
+            return step - 1
+        })
+    
+    
+    useEffect(()=>{
+        const backElement = backRef.current
+        backElement.addEventListener('click', onBackHandler)
+        return ()=>{
+            backElement.removeEventListener('click', onBackHandler)
+        }
+    }, [backRef])
 
     const [activeStep, setActiveStep] = useState(1) 
     const steps = formContent.length
@@ -37,21 +56,21 @@ export function MultiStepForm({className, children, onSubmit}) {
             <div className={Style.FormStepContainer}>
                 {React.cloneElement(formContent[activeStep-1])}
             </div>
-            <Stepper />
+            <Stepper label={activeStep>steps-2?"Confirm":"Next"}/>
         </form>
     )
 }
 
 export function Step({children}){
     return(
-        <div>{children}</div>
+        <>{children}</>
     )
 }
 
-export function Stepper(){
+export function Stepper({label}){
     return(
         <PrimaryButton 
-            label="Next"
+            label={label}
             variant="h4"
         />
     )
