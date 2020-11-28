@@ -2,7 +2,7 @@ import React from 'react'
 import Style from './NewRequest.module.scss'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
-import {MultiStepForm, Step} from '../../components/MultiStepForm/MultiStepForm'
+import {MultiStepForm, Step, Stepper} from '../../components/MultiStepForm/MultiStepForm'
 
 
 export default function NewRequest() {
@@ -13,12 +13,16 @@ export default function NewRequest() {
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
 
-            <MultiStepForm className={Style.MultiStepForm}>
+            <MultiStepForm className={Style.MultiStepForm}
+                onSubmit={(e)=>{
+                    console.log("Submitted")
+                }}
+            >
                 <Step>
-                    asdaqweqweqqweqw
+                    first div
                 </Step>
                 <Step>
-                    asdaqweqwe
+                    second div
                 </Step>
             </MultiStepForm>
 
