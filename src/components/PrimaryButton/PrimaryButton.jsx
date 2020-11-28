@@ -5,7 +5,7 @@ import Style from './PrimaryButton.module.scss'
 export default function PrimaryButton({label, variant="h3", onClick=()=>{}}){
     const Variant = variant
     return (
-        <button className={Style.PrimaryButton} onClick={(e)=>onclick(e)}>
+        <button className={Style.PrimaryButton} onClick={(e)=>onClick(e)}>
             <Variant className={Style.Label}>{label}</Variant>
         </button>
     )
