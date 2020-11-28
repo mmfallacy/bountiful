@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import BackgroundBlob from "../../components/Background/BackgroundBlob";
+import BackgroundBlobRepeat from "../../components/Background/BackgroundBlobRepeat";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FeedCard from "../../components/Card/FeedCard";
+import Navbar from "../../components/Navbar/Navbar";
+
 import Style from "./Main.module.scss";
 
 function Main() {
@@ -38,7 +40,7 @@ function Main() {
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
-      productImage: "https://via.placeholder.com/150x90",
+      productImage: "https://via.placeholder.com/330x150",
       sellerId: "IDknbvnkvnnvbkb",
     },
     {
@@ -48,7 +50,7 @@ function Main() {
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
-      productImage: "https://via.placeholder.com/150x90",
+      productImage: "https://via.placeholder.com/330x150",
       sellerId: "IDa",
     },
     {
@@ -58,7 +60,7 @@ function Main() {
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
-      productImage: "https://via.placeholder.com/150x90",
+      productImage: "https://via.placeholder.com/330x150",
       sellerId: "IDab",
     },
     {
@@ -68,7 +70,7 @@ function Main() {
       price: 130,
       description:
         "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day. She wondered what they would do if something ever happened to her. Would they miss the meals she provided if she failed to put out the food one morning?",
-      productImage: "https://via.placeholder.com/150x90",
+      productImage: "https://via.placeholder.com/330x150",
       sellerId: "IDabc",
     },
   ];
@@ -80,16 +82,18 @@ function Main() {
 
   return (
     <div className={Style.Main}>
-      <BackgroundBlob />
-      <div className={Style.Header}>
+      <div className={Style.ProfilePicContainer}>
         <img className={Style.Pfp} src={pfp} alt={name} />
       </div>
       <div className={Style.Content}>
-        <h2 className={Style.Greetings}>Hey {name.split(" ")[0]},</h2>
+        <h1 className={Style.Greetings}>Hey {name.split(" ")[0]},</h1>
+        <h3 className={Style.Catchphrase}>Look for potential buyers now!</h3>
         <SearchBar />
-        <h1 className={Style.Label}>What's New?</h1>
+        <h2 className={Style.Label}>What's New?</h2>
         {feed}
       </div>
+      <Navbar/>
+      <BackgroundBlobRepeat/>
     </div>
   );
 }
