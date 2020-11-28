@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
-import Style from './NewRequest.module.scss'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
-import {MultiStepForm, Step} from '../../components/MultiStepForm/MultiStepForm'
+import React from 'react'
+import Style from './NewOffer.module.scss'
+import {
+    PageHeader,
+    BackgroundBlob,
+    MultiStepForm, Step,
+    FormInput, ImageInput
+} from '../../components'
 import {useRequestFormStore} from '../../store/FormStore'
 import {useForm} from 'react-hook-form'
-import {FormInput, ImageInput} from '../../components/FormInput/FormInput'
+
 
 export default function NewRequest(props) {
     const productId = parseInt(props.match.params.productId)
