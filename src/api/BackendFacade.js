@@ -14,6 +14,8 @@ import 'firebase/firestore';
 
 /**
  * @typedef {Object} Listing
+ * @property {string} id
+ * @property {string} author - user ID of the person who posted the listing
  * @property {string} title
  * @property {string} description
  * @property {string} photo
@@ -60,24 +62,53 @@ export class BackendFacade {
     return this._app.auth().signOut();
   }
 
-    /** @returns {Promise<Listing[]>} */
+  /** @returns {Promise<Listing[]>} */
   async retrieveListings() {
     const db = this._app.firestore();
     const snapshot = await db.collection('listings').get();
     /** @type {Listing[]} */
     // @ts-expect-error
-    const docs = snapshot.docs.map(doc => doc.data());
+    const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     return docs;
+  }
+
+  /**
+   * @param {string} id
+   * @returns {Promise<Listing>}
+   */
+  async retrieveListingById(id) {
+    const db = this._app.firestore();
+    const snapshot = await db.collection('listings').doc(id).get();
+    // @ts-expect-error
+    return { id: snapshot.id, ...snapshot.data() };
   }
 
   /**
    * @param {string} title
    * @param {string} description
    * @param {string} photo - Data URL of the photo uploaded
+   * @returns {Promise<Listing>}
    */
   async createListing(title, description, photo) {
+    const user = this.user;
+    if (!user)
+      throw new Error('There is no user logged in!');
+
     const db = this._app.firestore();
-    const listing = { title, description, photo };
-    await db.collection('listings').add(listing);
+    /** @type {Omit<Listing, 'id'>} */
+    const listing = {
+        author: user.uid,
+        title,
+        description,
+        photo,
+    };
+    const reference = await db.collection('listings').add(listing);
+    const doc = await reference.get();
+
+    // @ts-expect-error
+    return {
+      id: reference.id,
+      ...doc.data(),
+    }
   }
 }
