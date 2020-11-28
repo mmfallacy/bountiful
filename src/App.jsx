@@ -4,6 +4,7 @@ import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 import NewOffer from './pages/NewOffer/NewOffer';
 import NewRequest from './pages/NewRequest/NewRequest';
+import Test from './pages/Testing/Test'
 
 
 const mockProductListing = [ {
@@ -65,6 +66,10 @@ function App() {
       <Route
         path="/newlisting/:productId"
         component={NewRequest}
+      />
+      <Route
+        path="/testing"
+        component={Test}
       />
     </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Style from './NewOffer.module.scss'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
@@ -15,10 +15,10 @@ export default function NewOffer({productObj}) {
     const backRef = React.createRef()
 
     const update = useRequestFormStore(state=>state.update)
-    const reset = useRequestFormStore(state=>state.reset)
+    // const reset = useRequestFormStore(state=>state.reset)
     const formData = useRequestFormStore(state=>state.data)
 
-    const {handleSubmit, error, register} = useForm()
+    const {handleSubmit, register} = useForm()
 
     return (
         <div className={Style.NewRequest}>
