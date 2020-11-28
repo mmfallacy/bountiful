@@ -1,0 +1,26 @@
+@import "../../globals";
+
+.BodyBox {
+  margin-top: 80px;
+  padding: 0 24px;
+
+  .AccountInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .Pfp {
+      height: 200px;
+      widows: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: $gray-400;
+      margin-bottom: 5px;
+    }
+  }
+}
