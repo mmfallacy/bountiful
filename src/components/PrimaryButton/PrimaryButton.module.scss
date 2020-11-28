@@ -1,7 +1,9 @@
 @import '../../globals';
 
 .PrimaryButton{
-    padding:15px 45px;
+    padding:0 45px;
+    display: flex;
+    align-items: center;
     background-color: $secondary;
     border:none;
     border-radius: 10px;
@@ -10,5 +12,12 @@
         color:white;
         font-family: 'Rubik';
         font-weight: 500;
+    }
+
+    h4{
+        margin:12px 0;
+    }
+    h3{
+        margin:15px 0;
     }
 }

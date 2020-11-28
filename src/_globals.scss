@@ -1,27 +1,39 @@
 $shadowColor: rgba(0, 0, 0, 0.25);
 $secondary: #4b8078;
 $primary: #f9aa50;
-$gray-300: #828282;
+$gray-300: #f2f2f2;
 $gray-400: #bdbdbd;
+$white: #FFFFFF;
 
-h1 {
-  font-size: 3.75rem;
-  font-weight: 600;
+
+h1 { 
+  font-size: 3.5rem;
+  font-weight: 500;
 }
-
 h2 {
   font-weight: normal;
-  font-size: 3rem;
+  font-size: 2.75rem;
 }
 h3 {
-  font-weight: 600;
-  font-size: 2.25rem;
+  font-weight: normal;
+  font-size: 2.5rem;
 }
 h4 {
   font-weight: normal;
-  font-size: 1.75rem;
+  font-size: 2rem;
 }
 p {
   font-weight: normal;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+}
+
+%clearbutton{
+  background: none;
+  border:none;
+}
+%pagediv{
+ height:100%;
+ width:100%;
+ padding-top:80px;
+ position: relative;
 }

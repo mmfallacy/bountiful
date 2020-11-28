@@ -1,36 +1,69 @@
 @import "../../globals";
 
-.ListCard {
-  height: 90px;
+.Card {
   padding: 15px;
   margin: 20px 0;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
   display: flex;
+
+  .Label {
+    color: $secondary;
+  }
+
+  p {
+    color: $gray-300;
+  }
+
+  .Info * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.ListCard {
+  height: 90px;
+  border-radius: 10px;
   align-items: center;
+
+  &.noImage {
+    height: auto;
+
+    .Info {
+      width: calc(100% - 53px);
+    }
+  }
 
   .Image {
     height: 60px;
     width: 60px;
-    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 12px;
   }
 
   .Info {
-    margin-left: 15px;
-    width: calc(100% - 120px);
+    width: calc(100% - 125px);
 
-    .Label {
-      color: $secondary;
+    .Seller {
+      display: flex;
+      align-items: center;
+
+      .Pfp {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
     }
 
-    .Desc {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
+    .Reputation {
+      margin-top: 3px;
 
-    .Price {
-      color: $gray-300;
+      svg {
+        margin-right: 3px;
+        height: 1.75rem;
+      }
     }
   }
 
@@ -38,5 +71,30 @@
     height: 35px;
     width: 35px;
     margin-left: auto;
+  }
+}
+
+.FeedCard {
+  flex-direction: column;
+
+  .Image {
+    max-height: 200px;
+    margin-bottom: 13px;
+    object-fit: cover;
+  }
+
+  .Footer {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+
+    .Info {
+      width: calc(100% - 35px);
+    }
+
+    .Offer {
+      margin-left: auto;
+      width: 2.75rem;
+    }
   }
 }
