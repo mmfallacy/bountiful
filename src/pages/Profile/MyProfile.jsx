@@ -6,7 +6,7 @@ import Style from "./Profile.module.scss";
 export default function MyProfile({ pfp, name, email, bio }) {
   return (
     <div>
-      <PageHeader label="My account" />
+      <PageHeader label="My Profile" actionIcon={<EditSvg />} />
       <div className={Style.BodyBox}>
         <div className={Style.AccountInfo}>
           <img className={Style.Pfp} src={pfp} alt={name} />
