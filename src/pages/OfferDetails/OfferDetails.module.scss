@@ -1,0 +1,45 @@
+@import "../../globals";
+
+.OfferDetails {
+  margin-top: 80px;
+
+  .ProductImage {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .Content {
+    @extend %bodybox;
+    padding-top: 15px;
+
+    .Label {
+      color: $secondary;
+    }
+
+    .Seller {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .Pfp {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+      }
+
+      .SellerInfo {
+        margin-left: 10px;
+      }
+    }
+
+    .Offer {
+      color: $gray-400;
+      margin-bottom: 10px;
+    }
+
+    .Desc {
+      text-align: justify;
+    }
+  }
+}
