@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as EditSvg } from "./EditSvg.svg";
 import PageHeader from "../../components/PageHeader/PageHeader";
-import Style from "./MyProfile.module.scss";
+import Style from "./Profile.module.scss";
 
 export default function MyProfile({ pfp, name, email, bio }) {
   return (
