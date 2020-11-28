@@ -10,19 +10,19 @@ export default function Navbar() {
     <div className={Style.Navbar}>
       <div className={Style.Section}>
         <HomeSvg className={Style.Icon} />
-        <p className={Style.Label}>Home</p>
+        <h5 className={Style.Label}>Home</h5>
       </div>
       <div className={Style.Section}>
         <MyRequests className={Style.Icon} />
-        <p className={Style.Label}>My Requests</p>
+        <h5 className={Style.Label}>My Requests</h5>
       </div>
       <div className={Style.Section}>
         <MyOffers className={Style.Icon} />
-        <p className={Style.Label}>My Offers</p>
+        <h5 className={Style.Label}>My Offers</h5>
       </div>
       <div className={Style.Section}>
         <Settings className={Style.Icon} />
-        <p className={Style.Label}>Settings</p>
+        <h5 className={Style.Label}>Settings</h5>
       </div>
     </div>
   );
