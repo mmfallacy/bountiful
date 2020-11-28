@@ -7,7 +7,7 @@ import Style from "./Profile.module.scss";
 export default function MyProfile({ pfp, name, email, bio, reputation }) {
   return (
     <div>
-      <PageHeader label="My account" />
+      <PageHeader label="Seller's Profile" />
       <div className={Style.BodyBox}>
         <div className={Style.AccountInfo}>
           <img className={Style.Pfp} src={pfp} alt={name} />
