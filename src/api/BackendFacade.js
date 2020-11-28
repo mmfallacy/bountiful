@@ -7,9 +7,10 @@ import 'firebase/firestore';
 /** @property {string} name - Display name of the user */
 /** @property {string} email - Google email of the user */
 /** @property {string} bio - Bio description of the user */
+/** @property {number} karma - Rating of the user from 0.0 to 1.0 */
 /** @property {string} pfp - URL to the profile picture */
 
-class BackendFacade {
+export class BackendFacade {
   /**
    * @param {Object} credentials - This represents the JSON containing the
    * Google Cloud Platform credentials.
@@ -35,6 +36,8 @@ class BackendFacade {
         name: user.displayName,
         email: user.email,
         bio: "Lorem ipsum.",
+        // TODO: Implement proper rating system
+        karma: Math.random(),
         pfp: user.photoURL,
     };
     return this._user;
