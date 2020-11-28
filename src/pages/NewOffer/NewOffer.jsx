@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
-import Style from './NewRequest.module.scss'
+import React, {useState, useEffect} from 'react'
+import Style from './NewOffer.module.scss'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import BackgroundBlob from '../../components/Background/BackgroundBlobRepeat'
 import {MultiStepForm, Step} from '../../components/MultiStepForm/MultiStepForm'
 import {useRequestFormStore} from '../../store/FormStore'
 import {useForm} from 'react-hook-form'
 import {FormInput, ImageInput} from '../../components/FormInput/FormInput'
+import Card from '../../components/Card/MyRequestCard'
 
-export default function NewRequest(props) {
-    const productId = parseInt(props.match.params.productId)
+
+
+export default function NewOffer({productObj}) {
+
     const backRef = React.createRef()
 
     const update = useRequestFormStore(state=>state.update)
@@ -16,10 +19,11 @@ export default function NewRequest(props) {
     const formData = useRequestFormStore(state=>state.data)
 
     const {handleSubmit, error, register} = useForm()
+
     return (
         <div className={Style.NewRequest}>
             <PageHeader 
-                label="New Request"
+                label="New Offer"
                 ref={{backRef}}
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
@@ -27,7 +31,7 @@ export default function NewRequest(props) {
                 onSubmit={(e)=>{
                     console.log("Submitted")
                     console.log(formData)
-                    alert("Submitted Request!")
+                    alert("Submitted Offer!")
                 }}
                 onLastBack={(e)=>{
                     console.log("Back")
@@ -36,14 +40,12 @@ export default function NewRequest(props) {
                 backRef={backRef}
             >
                 <Step>
-                    <input hidden value={productId} name="productId" ref={register}/>
-                    <FormInput 
-                        label="What do you intend to buy?"
-                        placeholder="Food, Gadgets..."
-                        ref={register}
-                        name="productName"
-                    />
-
+                    <div className={Style.CardContainer}>
+                        <h3>You intend to offer on</h3>
+                        <input hidden name="productName" ref={register} value={productObj.name}/>
+                        <input hidden name="productId" ref={register} value={productObj.id}/>
+                        <Card imgSrc={productObj.imgSrc} budget={productObj.budget} product={productObj.name} />
+                    </div>
                     <section className={Style.FormInput}>
                         <h3>For around how much?</h3>
                         <div className={`${Style.Input} ${Style.Number}`}>
@@ -54,7 +56,7 @@ export default function NewRequest(props) {
                 </Step>
                 <Step>
                     <FormInput 
-                        label="How can you describe what you're looking for?"
+                        label="Please describe your item"
                         placeholder="It looks like ..."
                         variant="textarea"
                         ref={register}
