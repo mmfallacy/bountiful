@@ -1,0 +1,9 @@
+@import "../../globals";
+
+.MyList {
+  margin-top: 95px;
+
+  .Content {
+    @extend %bodybox;
+  }
+}
