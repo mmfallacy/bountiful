@@ -1,5 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/app'; import 'firebase/auth';
 import 'firebase/firestore';
 
 /**
@@ -16,13 +15,31 @@ import 'firebase/firestore';
 /**
  * @typedef {Object} Listing
  * @property {string} id
- * @property {string} author - user ID of the person who posted the listing
- * @property {number} price
+ * @property {string} author - User ID of the person who posted the listing
  * @property {string} title
  * @property {string} description
- * @property {string} photo
+ * @property {number} price
+ * @property {string[]} offers - Array of offers posted by sellers
+ * @property {string} photo - URL to the photo (may be a data URL)
  */
 
+/**
+ * @typedef {Object} Offer
+ * @property {string} id
+ * @property {string} productName - Display name of the product offer
+ * @property {string} description
+ * @property {string} seller - User ID of the seller
+ * @property {string} listing - Listing ID to which this offer belongs
+ * @property {number} price
+ * @property {string} photo - URL to the photo (may be a data URL)
+ */
+
+/**
+ * This serves as the primary interface between the React components
+ * and the Firebase API. Note that null checks have been omitted.
+ * Thus, it is extremely important that a user is signed in first
+ * before using any of the other methods.
+ */
 export class BackendFacade {
   /**
    * @param {Object} credentials - This represents the JSON containing the
@@ -48,10 +65,10 @@ export class BackendFacade {
 
     // Extract user information
       const {
-          uid,
-          displayName: name,
-          email,
-          photoURL: pfp
+        uid,
+        displayName: name,
+        email,
+        photoURL: pfp
       } = auth.currentUser;
 
     // Check if the user already exists
@@ -60,15 +77,15 @@ export class BackendFacade {
     const snapshot = await collection.where('uid', '==', uid).get();
     if (snapshot.empty) {
       this._user = {
-          uid,
-          name,
-          email,
-          // TODO: Implement proper way of editing bio
-          bio: "Lorem ipsum",
-          // TODO: Implement proper rating system
-          karma: Math.random(),
-          listings: [],
-          pfp,
+        uid,
+        name,
+        email,
+        // TODO: Implement proper way of editing bio
+        bio: "Lorem ipsum",
+        // TODO: Implement proper rating system
+        karma: Math.random(),
+        listings: [],
+        pfp,
       };
       await collection.add(this._user);
     } else
@@ -101,6 +118,18 @@ export class BackendFacade {
     const db = this._app.firestore();
     const DOC_ID = firebase.firestore.FieldPath.documentId();
     const snapshots = await db.collection('listings').where(DOC_ID, 'in', ids).get();
+    // @ts-expect-error
+    return snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  }
+
+  /**
+   * @param {string[]} ids
+   * @returns {Promise<Offer[]>}
+   */
+  async retrieveMultipleOffersById(ids) {
+    const db = this._app.firestore();
+    const DOC_ID = firebase.firestore.FieldPath.documentId();
+    const snapshots = await db.collection('offers').where(DOC_ID, 'in', ids).get();
     // @ts-expect-error
     return snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
@@ -148,11 +177,12 @@ export class BackendFacade {
     const db = this._app.firestore();
     /** @type {Omit<Listing, 'id'>} */
     const listing = {
-        author: user.uid,
-        title,
-        description,
-        price,
-        photo,
+      author: user.uid,
+      title,
+      description,
+      price,
+      offers: [],
+      photo,
     };
     const listingSnapshot = await db.collection('listings').add(listing);
     const doc = await listingSnapshot.get();
@@ -167,5 +197,37 @@ export class BackendFacade {
       id: listingSnapshot.id,
       ...doc.data(),
     }
+  }
+
+  /**
+   * @param {string} listingId
+   * @param {string} productName
+   * @param {string} description
+   * @param {number} price
+   * @param {string} photo - URL of the photo (may be a data URL)
+   * @returns {Promise<Offer>}
+   */
+  async createOfferOnListingId(listingId, productName, description, price, photo) {
+    // Store offer in the database
+    /** @type {Omit<Offer, 'id'>} */
+    const offer = {
+      productName,
+      description,
+      seller: this._user.uid,
+      listing: listingId,
+      price,
+      photo,
+    };
+    const db = this._app.firestore();
+    const offerRef = await db.collection('offers').add(offer);
+
+    // Append new offer to the listing
+    const listingSnapshot = await db.collection('listings').doc(listingId).get();
+    /** @type {string[]} */
+    const listingOfferIds = listingSnapshot.get('offers');
+    listingOfferIds.push(offerRef.id);
+    await listingSnapshot.ref.update('offers', listingOfferIds);
+
+    return { id: offerRef.id, ...offer };
   }
 }
