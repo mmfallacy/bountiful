@@ -1,0 +1,28 @@
+@import '../../globals';
+
+.PageHeader{
+    height:80px;
+    width:100%;
+    background: $white;
+    display: grid;
+    grid-template-columns: 30px auto 32px;
+    column-gap: 24px;
+    padding:24px;
+    align-items: center;
+    position: fixed;
+    top:0;
+}
+
+.Chevron{
+    @extend %clearbutton;
+
+}
+
+.Action{
+    @extend %clearbutton;
+}
+
+.Label{
+    line-height: 32px;
+    color: $primary
+}
