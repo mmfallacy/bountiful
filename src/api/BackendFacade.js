@@ -39,6 +39,7 @@ export class BackendFacade {
 
   /** @returns {Promise<User>} */
   async signInWithGoogle() {
+    // Log the user in
     const provider = new firebase.auth.GoogleAuthProvider();
     const auth = this._app.auth();
     await auth.signInWithRedirect(provider);
@@ -53,7 +54,16 @@ export class BackendFacade {
       karma: Math.random(),
       pfp: user.photoURL,
     };
+
+    // Check if the user already exists
+    const db = this._app.firestore();
+    const collection = db.collection('users');
+    const snapshot = await collection.where('uid', '==', user.uid).get();
+    if (snapshot.empty)
+      await collection.add(this._user);
+
     return this._user;
+
   }
 
   /** @returns {Promise<void>} */
@@ -81,6 +91,21 @@ export class BackendFacade {
     const snapshot = await db.collection('listings').doc(id).get();
     // @ts-expect-error
     return { id: snapshot.id, ...snapshot.data() };
+  }
+
+  /**
+   * @param {string} uid
+   * @returns {Promise<User>}
+   */
+  async retrieveUserById(uid) {
+    const db = this._app.firestore();
+    const snapshot = await db.collection('users').where('uid', '==', uid).get();
+    if (snapshot.empty)
+      throw new Error('The user does not exist!');
+
+    /** @type {User} */
+    // @ts-expect-error 
+    return snapshot.docs[0].data();
   }
 
   /**
