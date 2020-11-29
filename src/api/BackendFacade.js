@@ -60,9 +60,14 @@ export class BackendFacade {
 
   /** @returns {Promise<User>} */
   async signInWithGoogle() {
+    // Return the user if they are already logged in
+    if (this._user)
+      return this._user;
+
     // Log the user in
     const provider = new firebase.auth.GoogleAuthProvider();
     const auth = this._app.auth();
+    await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     await auth.signInWithPopup(provider);
 
     // Extract user information
