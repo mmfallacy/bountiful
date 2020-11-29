@@ -8,6 +8,7 @@ import {
   MyRequestDetails, MyOfferDetails
 } from './pages';
 
+import {useAPI} from './store'
 
 const mockProductListing = [ {
   imgSrc: "https://via.placeholder.com/150",
@@ -35,7 +36,16 @@ const mockProductListing = [ {
 }]
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true)
+  const [isLoggedIn, setLoggedIn] = useState(false)
+
+  const API = useAPI(state=>state.instance)
+
+  const loginHandler = () => {
+    const User = API._user
+    console.table(User)
+    if(User) setLoggedIn(true)
+    else alert("Failed to log in!")
+  }
   return (
     <BrowserRouter>
       <Route 
@@ -53,7 +63,7 @@ function App() {
         render={()=>
           isLoggedIn?
           <Redirect to="/"/>
-          : <Login />
+          : <Login onLogin={loginHandler}/>
         }
       />
       <Switch>

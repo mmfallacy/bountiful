@@ -2,7 +2,10 @@ import React from 'react'
 import {BackgroundBlob, PrimaryButton} from '../../components'
 import Style from './Login.module.scss'
 
+import {useAPI} from '../../store'
+
 function Login() {
+    const API = useAPI(state=>state.instance)
     return (
         <div className={Style.LoginPage}>          
             <BackgroundBlob />
@@ -12,11 +15,13 @@ function Login() {
             </div>
             <div className={Style.ButtonWrapper}>
                 <PrimaryButton 
-                
+                    onClick={async ()=>{
+                        await API.signInWithGoogle()
+                    }}
                     label="Login with Google"
                 />
                 <br/>
-                <h4 className={Style.Secondary}>Don't have an account? <button>Sign up</button></h4>
+                <h4 className={Style.Secondary}>Don't have an account? <button>It automatically signs up!</button></h4>
             </div>
         </div>
     )
