@@ -10,6 +10,8 @@ import {
 import {useRequestFormStore} from '../../store/FormStore'
 import {useForm} from 'react-hook-form'
 
+import {useAPI} from '../../store'
+import {useHistory} from 'react-router-dom'
 
 
 export default function NewOffer(props) {
@@ -18,20 +20,21 @@ export default function NewOffer(props) {
 
     const productId = props.match.params.productId
 
+    const API = useAPI(state=>state.instance)
+
+    const history = useHistory() 
+
     const update = useRequestFormStore(state=>state.update)
     // const reset = useRequestFormStore(state=>state.reset)
     const formData = useRequestFormStore(state=>state.data)
 
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState({})
 
     useEffect(()=>{
         async function onComponentMount(){
-            setProduct({
-                imgSrc: "https://via.placeholder.com/150",
-                name: "Black 222Lamp",
-                budget: 120,
-                id:'2'
-              })
+            const listing = await API.retrieveMultipleListingsById([productId])[0]
+            console.log(listing)
+            setProduct(listing)
         }
         onComponentMount()
     },[])
@@ -46,13 +49,18 @@ export default function NewOffer(props) {
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
             <MultiStepForm className={Style.MultiStepForm}
-                onSubmit={(e)=>{
+                onSubmit={async (e)=>{
                     console.log("Submitted")
                     console.log(formData)
+                    const {
+                        productName, description,price,productImage, productId
+                    } = formData
+                    await API.createOfferOnListingId(productId,productName,description,price,productImage)
                     alert("Submitted Offer!")
+                    history.goBack()
                 }}
                 onLastBack={(e)=>{
-                    console.log("Back")
+                    history.goBack()
                 }}
                 onStepperClick={handleSubmit((data)=>update(data))}
                 backRef={backRef}
@@ -62,7 +70,7 @@ export default function NewOffer(props) {
                         <h3>You intend to offer on</h3>
                         <input hidden name="productName" ref={register} value={product?.name}/>
                         <input hidden name="productId" ref={register} value={product?.id}/>
-                        {product && <Card imgSrc={product.imgSrc} budget={product.budget} product={product.name} />}
+                        <Card imgSrc={product.photo} budget={product?.budget} product={product?.name} />
                     </div>
                     <section className={Style.FormInput}>
                         <h3>For around how much?</h3>

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {BackgroundBlobRepeat, PageHeader, MyOfferCard} from "../../components"
 import Style from "./MyList.module.scss";
+import {useAPI} from "../../store"
+
 
 const mockData = [
   {
@@ -86,17 +88,34 @@ const mockData = [
 export default function MyOffers(/* { requests } */) {
   const [offers, setOffers] = useState([])
 
+
+  const API = useAPI(state=>state.instance) 
+
   useEffect(()=>{
-    setOffers(mockData)
-  })
+    async function onComponentMount(){
+      if (API.user){
+        const offers = await API.retrieveMultipleOffersById(API.user.offers)
+        const listingsid = offers.map((el)=>el.listing)
+        const listings = await API.retrieveMultipleListingsById(listingsid)
+        
+        offers.map( el => 
+          ({...el, budget: listings.filter(listing => listing.id===el.listing)[0].price})
+        )
+
+        console.log(offers)
+        setOffers(offers)
+      }
+    }
+    onComponentMount()
+  }, [])
 
   return (
     <div className={Style.MyList}>
-      <PageHeader label="My Offers" />
+      <PageHeader label="My Offers"/>
       <BackgroundBlobRepeat />
       <div className={Style.Content}>
-        {mockData.map(({ sellerId, productImage, price, productName, budget }) =>
-          <MyOfferCard key={sellerId} imgSrc={productImage} offer={price} budget={budget} product={productName} />
+        {offers && offers.map(({ id, photo, productName, price }) =>
+          <MyOfferCard key={id} imgSrc={[photo]} offer={price} product={productName} />
         )}
       </div>
     </div>

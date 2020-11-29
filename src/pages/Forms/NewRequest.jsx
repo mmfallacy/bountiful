@@ -9,6 +9,9 @@ import {
 import {useRequestFormStore} from '../../store/FormStore'
 import {useForm} from 'react-hook-form'
 
+import {useAPI} from '../../store'
+
+import {useHistory} from "react-router-dom"
 
 export default function NewRequest(props) {
     const backRef = React.createRef()
@@ -16,6 +19,10 @@ export default function NewRequest(props) {
     const update = useRequestFormStore(state=>state.update)
     const reset = useRequestFormStore(state=>state.reset)
     const formData = useRequestFormStore(state=>state.data)
+
+    const history = useHistory()
+
+    const API = useAPI(state=>state.instance)
 
     const {handleSubmit, error, register} = useForm()
     return (
@@ -26,10 +33,13 @@ export default function NewRequest(props) {
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
             <MultiStepForm className={Style.MultiStepForm}
-                onSubmit={(e)=>{
+                onSubmit={async (e)=>{
                     console.log("Submitted")
                     console.log(formData)
-                    alert("Submitted Request!")
+                    const {productName,productImage,description,price} = formData
+                    await API. createListing(productName, description, price, productImage)
+                    alert ("submitted")
+                    history.goBack()
                 }}
                 onLastBack={(e)=>{
                     console.log("Back")
