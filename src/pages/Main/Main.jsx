@@ -3,6 +3,9 @@ import {BackgroundBlobRepeat, FeedCard, SearchBar, Navbar} from "../../component
 
 import Style from "./Main.module.scss";
 
+import {useAPI} from "../../store"
+import {useHistory} from "react-router-dom"
+
 const mockData = [
   {
     productName: "Black lamb",
@@ -66,24 +69,33 @@ const mockData = [
   },
 ];
 
-const name = "Lance Admin";
-const pfp = "https://via.placeholder.com/100";
-
 function Main() {
   const [listings, setListings] = useState([]);
 
+  const API = useAPI(state=>state.instance)
+
+  const {name, pfp} = API.user
+
+  const history = useHistory()
+
+  console.log(API.user)
+
   useEffect(()=>{
-    setListings(mockData)
+    async function onComponentMount(){
+      const result = await API.retrieveAllListings()
+      setListings(result)
+    }
+    onComponentMount()
   })
 
-  const feed = listings.map(({ sellerId, productImage, productName, budget }) =>
-    <FeedCard key={sellerId} imgSrc={productImage} budget={budget} product={productName} />
+  const feed = listings.map(({ id, photo, title, price }) =>
+    <FeedCard key={id} imgSrc={photo} budget={price} product={title} />
   );
 
   return (
     <div className={Style.Main}>
       <div className={Style.ProfilePicContainer}>
-        <img className={Style.Pfp} src={pfp} alt={name} />
+        <img className={Style.Pfp} src={pfp} alt={name} onClick={()=>history.push("/myaccount")} />
       </div>
       <div className={Style.Content}>
 

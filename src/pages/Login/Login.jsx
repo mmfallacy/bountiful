@@ -4,7 +4,7 @@ import Style from './Login.module.scss'
 
 import {useAPI} from '../../store'
 
-function Login() {
+function Login({onLogin}) {
     const API = useAPI(state=>state.instance)
     return (
         <div className={Style.LoginPage}>          
@@ -16,7 +16,12 @@ function Login() {
             <div className={Style.ButtonWrapper}>
                 <PrimaryButton 
                     onClick={async ()=>{
-                        await API.signInWithGoogle()
+                        try{
+                            await API.signInWithGoogle()
+                        } catch (e) {
+                            console.log(e)
+                        }
+                        onLogin()
                     }}
                     label="Login with Google"
                 />

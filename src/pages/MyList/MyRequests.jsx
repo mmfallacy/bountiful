@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {BackgroundBlobRepeat, PageHeader, MyRequestCard} from "../../components"
 import Style from "./MyList.module.scss";
+import {useAPI} from "../../store"
 
 const mockData = [
   {
@@ -65,20 +66,28 @@ const mockData = [
   },
 ];
 
-export default function MyRequests(/* { requests } */) {
+export default function MyRequests() {
   const [requests, setRequests] = useState([])
 
+  const API = useAPI(state=>state.instance) 
+
   useEffect(()=>{
-    setRequests(mockData)
-  })
+    async function onComponentMount(){
+      if (API.user){
+        const listings = await API.retrieveMultipleListingsById(API.user.listings)
+        setRequests(listings)
+      }
+    }
+    onComponentMount()
+  }, [])
 
   return (
     <div className={Style.MyList}>
       <PageHeader label="My Requests" />
       <BackgroundBlobRepeat />
       <div className={Style.Content}>
-        { mockData.map(({ sellerId, productImage, budget, productName }) =>
-            <MyRequestCard key={sellerId} imgSrc={productImage} budget={budget} product={productName} />
+        {requests && requests.map(({ id, photo, title, price }) =>
+            <MyRequestCard key={id} imgSrc={photo} budget={price} product={title} />
         )}  
       </div>
     </div>
