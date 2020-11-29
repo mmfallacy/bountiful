@@ -63,7 +63,7 @@ export class BackendFacade {
     // Log the user in
     const provider = new firebase.auth.GoogleAuthProvider();
     const auth = this._app.auth();
-    await auth.signInWithRedirect(provider);
+    await auth.signInWithPopup(provider);
 
     // Extract user information
       const {
