@@ -89,7 +89,7 @@ function Main() {
   })
 
   const feed = listings.map(({ id, photo, title, price }) =>
-    <FeedCard key={id} imgSrc={photo} budget={price} product={title} />
+    <FeedCard key={id} productId={id} imgSrc={photo} budget={price} product={title} />
   );
 
   return (

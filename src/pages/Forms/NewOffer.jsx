@@ -28,11 +28,12 @@ export default function NewOffer(props) {
     // const reset = useRequestFormStore(state=>state.reset)
     const formData = useRequestFormStore(state=>state.data)
 
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState({})
 
     useEffect(()=>{
         async function onComponentMount(){
-            const listing = API.retrieveMultipleListingsById([productId])[0]
+            const listing = await API.retrieveMultipleListingsById([productId])[0]
+            console.log(listing)
             setProduct(listing)
         }
         onComponentMount()
@@ -54,7 +55,7 @@ export default function NewOffer(props) {
                     const {
                         productName, description,price,productImage, productId
                     } = formData
-                    API.createOfferOnListingId(productId,productName,description,price,productImage)
+                    await API.createOfferOnListingId(productId,productName,description,price,productImage)
                     alert("Submitted Offer!")
                     history.goBack()
                 }}
@@ -69,7 +70,7 @@ export default function NewOffer(props) {
                         <h3>You intend to offer on</h3>
                         <input hidden name="productName" ref={register} value={product?.name}/>
                         <input hidden name="productId" ref={register} value={product?.id}/>
-                        {product && <Card imgSrc={product.photo} budget={product.budget} product={product.name} />}
+                        <Card imgSrc={product.photo} budget={product?.budget} product={product?.name} />
                     </div>
                     <section className={Style.FormInput}>
                         <h3>For around how much?</h3>

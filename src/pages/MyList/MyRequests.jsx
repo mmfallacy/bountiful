@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {BackgroundBlobRepeat, PageHeader, MyRequestCard} from "../../components"
 import Style from "./MyList.module.scss";
 import {useAPI} from "../../store"
+import {ReactComponent as Add} from "./add.svg"
+import {useHistory} from "react-router-dom"
 
 const mockData = [
   {
@@ -71,6 +73,8 @@ export default function MyRequests() {
 
   const API = useAPI(state=>state.instance) 
 
+  const history = useHistory()
+
   useEffect(()=>{
     async function onComponentMount(){
       if (API.user){
@@ -83,7 +87,7 @@ export default function MyRequests() {
 
   return (
     <div className={Style.MyList}>
-      <PageHeader label="My Requests" />
+      <PageHeader label="My Requests" actionIcon={<Add/>} onActionClick={()=>history.push('/newlisting')}/>
       <BackgroundBlobRepeat />
       <div className={Style.Content}>
         {requests && requests.map(({ id, photo, title, price }) =>
