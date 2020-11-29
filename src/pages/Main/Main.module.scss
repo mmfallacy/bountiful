@@ -2,7 +2,7 @@
 
 .Main {
   @extend %pagediv;
-  height:auto;
+  min-height:100%;
   padding: 30px;
 
   .ProfilePicContainer {

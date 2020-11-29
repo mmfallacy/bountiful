@@ -2,7 +2,7 @@
 
 .MyList {
   @extend %pagediv;
-  height:auto;
+  min-height:100%;
 
   .Content {
     @extend %bodybox;

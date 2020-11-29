@@ -14,9 +14,9 @@ export default function Navbar() {
     document.documentElement.scrollTop = 0
   }
 
-  const onRequestsClick = () => history.push('/')
+  const onRequestsClick = () => history.push("/myaccount/listings")
 
-  const onOffersClick = () => history.push('/')
+  const onOffersClick = () => history.push("/myaccount/offers")
 
   const onSettingsClick = () => alert("Sorry! This section has not been implemented yet. Even a 404 page hasn't been implemented yet :'( ")
 

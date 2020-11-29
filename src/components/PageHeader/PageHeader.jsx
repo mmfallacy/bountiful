@@ -1,9 +1,12 @@
 import React, {useRef} from 'react'
 import Style from './PageHeader.module.scss'
 import {ReactComponent as ChevronLeft} from './ic_chevron.svg'
+import {useHistory} from "react-router-dom"
 
 const PageHeader = React.forwardRef((props, ref) =>{
-    const {label, actionIcon, onActionClick=()=>{}, onChevronClick=()=>{}} = props
+
+    const history = useHistory()
+    const {label, actionIcon, onActionClick=()=>{}, onChevronClick=()=>history.goBack()} = props
 
 
     const localBackRef = useRef(null)
