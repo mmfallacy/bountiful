@@ -2,7 +2,7 @@
 
 .SearchBar {
   background: none;
-  height: 50px;
+  height: 44px;
   width: 100%;
   border: $secondary 2px solid;
   border-radius: 10px;
@@ -23,13 +23,16 @@
   }
 
   .Input {
+    font-weight: 600;
+    font-family: 'Roboto';
     width: calc(100% - 65px);
     border: none;
     color: $secondary;
     font-size: 2rem;
+    background: none;
 
     &::-webkit-input-placeholder {
-      color: $secondaryFaded;
+      color: $secondary;
     }
 
     &::-webkit-search-cancel-button {

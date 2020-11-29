@@ -1,29 +1,43 @@
 import React from "react";
-import { ReactComponent as HomeSvg } from "./HomeSvg.svg";
-import { ReactComponent as MyRequests } from "./MyRequestsSvg.svg";
-import { ReactComponent as MyOffers } from "./MyOffersSvg.svg";
-import { ReactComponent as Settings } from "./SettingsSvg.svg";
+import { ReactComponent as Home } from "./Home.svg";
+import { ReactComponent as MyRequests } from "./MyRequests.svg";
+import { ReactComponent as MyOffers } from "./MyOffers.svg";
+import { ReactComponent as Settings } from "./Settings.svg";
+import {useHistory} from "react-router-dom"
 import Style from "./Navbar.module.scss";
 
 export default function Navbar() {
+  const history = useHistory()
+
+  const onHomeClick = () => {
+    console.log("test")
+    document.documentElement.scrollTop = 0
+  }
+
+  const onRequestsClick = () => history.push('/')
+
+  const onOffersClick = () => history.push('/')
+
+  const onSettingsClick = () => alert("Sorry! This section has not been implemented yet. Even a 404 page hasn't been implemented yet :'( ")
+
+
   return (
     <div className={Style.Navbar}>
-      <div className={Style.Section}>
-        <HomeSvg className={Style.Icon} />
-        <h5 className={Style.Label}>Home</h5>
-      </div>
-      <div className={Style.Section}>
-        <MyRequests className={Style.Icon} />
-        <h5 className={Style.Label}>My Requests</h5>
-      </div>
-      <div className={Style.Section}>
-        <MyOffers className={Style.Icon} />
-        <h5 className={Style.Label}>My Offers</h5>
-      </div>
-      <div className={Style.Section}>
-        <Settings className={Style.Icon} />
-        <h5 className={Style.Label}>Settings</h5>
-      </div>
+      <NavbarButton active icon={Home} label="Home" onClick={onHomeClick}/>
+      <NavbarButton icon={MyRequests} label="My Requests" onClick={onRequestsClick}/>
+      <NavbarButton icon={MyOffers} label="My Offers" onClick={onOffersClick}/>
+      <NavbarButton icon={Settings} label="Settings" onClick={onSettingsClick}/>
     </div>
   );
+}
+
+function NavbarButton({icon, label, active, onClick}){
+  const Icon = icon
+
+  return (
+    <button className={Style.Button} onClick={onClick}>
+      <Icon />
+      <label className={`${Style.Label} ${active && Style.Active}`}>{label}</label>
+    </button>
+  )
 }
