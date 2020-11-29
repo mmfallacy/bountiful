@@ -25,11 +25,18 @@ The pervasive consequences of a global pandemic have further cemented technology
 
 With that said, Bountiful provides a competitive digital platform for empowering the customer as the utmost priority. In the "New Normal", gone are the days when customers have to manually search for the best deals themselves—such as in the case of malls and traditional e-commerce platforms. At Bountiful, modern technology allows us to foster a platform where the customer is treated like royalty. After all, the Filipino people deserve no less.
 
-# Building from Source
+# Development Environment
+## Prerequisites
 The front-end prototype was developed with [Node.js v15](https://nodejs.org/en/blog/release/v15.3.0/) using the [React framework](https://reactjs.org) for JavaScript. Instead of NPM, we used [Classic Yarn](https://classic.yarnpkg.com/lang/en/) as our package manager.
 
 Note that some of our dependencies make use of native Node modules. These require [Python 2](https://www.python.org/downloads/release/python-2718/) and some platform-specific build toolchains in order to compile successfully. Please consult the [`node-gyp` documentation](https://github.com/nodejs/node-gyp#installation) for more information.
 
+## API Keys and Credentials
+In the back-end, the app makes use of the authentication and database features of [Google Firebase](https://firebase.google.com/). Without a proper back-end, we resorted to directly embedding our environment variables into the built app.
+
+The React build system is configured to pull in the environment variables from a certain `.env.local` file located in the project root. The credentials shall be forwarded to the event organizers via email.
+
+## Building from Source
 Assuming that all prerequisites have been installed, the project can be hosted locally using the commands below:
 ```bash
 # Clone the Git repository
