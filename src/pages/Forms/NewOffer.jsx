@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Style from './NewOffer.module.scss'
 import {
     PageHeader,
@@ -12,13 +12,29 @@ import {useForm} from 'react-hook-form'
 
 
 
-export default function NewOffer({productObj}) {
+export default function NewOffer(props) {
 
     const backRef = React.createRef()
+
+    const productId = props.match.params.productId
 
     const update = useRequestFormStore(state=>state.update)
     // const reset = useRequestFormStore(state=>state.reset)
     const formData = useRequestFormStore(state=>state.data)
+
+    const [product, setProduct] = useState(null)
+
+    useEffect(()=>{
+        async function onComponentMount(){
+            setProduct({
+                imgSrc: "https://via.placeholder.com/150",
+                name: "Black 222Lamp",
+                budget: 120,
+                id:'2'
+              })
+        }
+        onComponentMount()
+    },[])
 
     const {handleSubmit, register} = useForm()
 
@@ -44,9 +60,9 @@ export default function NewOffer({productObj}) {
                 <Step>
                     <div className={Style.CardContainer}>
                         <h3>You intend to offer on</h3>
-                        <input hidden name="productName" ref={register} value={productObj.name}/>
-                        <input hidden name="productId" ref={register} value={productObj.id}/>
-                        <Card imgSrc={productObj.imgSrc} budget={productObj.budget} product={productObj.name} />
+                        <input hidden name="productName" ref={register} value={product?.name}/>
+                        <input hidden name="productId" ref={register} value={product?.id}/>
+                        {product && <Card imgSrc={product.imgSrc} budget={product.budget} product={product.name} />}
                     </div>
                     <section className={Style.FormInput}>
                         <h3>For around how much?</h3>

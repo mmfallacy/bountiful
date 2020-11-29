@@ -11,7 +11,6 @@ import {useForm} from 'react-hook-form'
 
 
 export default function NewRequest(props) {
-    const productId = parseInt(props.match.params.productId)
     const backRef = React.createRef()
 
     const update = useRequestFormStore(state=>state.update)
@@ -39,7 +38,6 @@ export default function NewRequest(props) {
                 backRef={backRef}
             >
                 <Step>
-                    <input hidden value={productId} name="productId" ref={register}/>
                     <FormInput 
                         label="What do you intend to buy?"
                         placeholder="Food, Gadgets..."

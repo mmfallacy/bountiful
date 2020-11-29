@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import {
   Login, Main, NewOffer, 
   NewRequest, Test, MyRequests, MyOffers,
-  MyProfile, SellerProfile
+  MyProfile, SellerProfile,
+  MyRequestDetails, MyOfferDetails
 } from './pages';
 
 
@@ -55,33 +56,39 @@ function App() {
           : <Login />
         }
       />
-      <Route
-        path="/myrequests"
-        component={MyRequests}
-      />
-      <Route
-        path="/myoffers"
-        component={MyOffers}
-      />
-      <Route
-        path="/myaccount"
-        component={MyProfile}
-      />
+      <Switch>
+        <Route
+          path="/myaccount/listing/:productId"
+          component = {MyRequestDetails}
+        />
+        <Route
+          path="/myaccount/listings"
+          component={MyRequests}
+        />
+        <Route
+          path="/myaccount/offer/:productId"
+          component={MyOfferDetails}
+        />
+        <Route
+          path="/myaccount/offers"
+          component={MyOffers}
+        />
+        <Route
+          path="/myaccount"
+          component={MyProfile}
+        />
+      </Switch>
+
       <Route
         path="/account/:uid"
         component={SellerProfile}
       />
       <Route
         path="/listing/:productId/newoffer"
-        component={(props)=>{
-          const productId = props.match.params.productId
-          const productObj = mockProductListing.filter((el)=>el.id===productId)[0]
-          if (!productObj) return <Redirect to="/" />
-          return <NewOffer productObj={productObj} />
-        }}
+        component={NewOffer}
       />
       <Route
-        path="/newlisting/:productId"
+        path="/newlisting"
         component={NewRequest}
       />
       <Route
