@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import Style from './PageHeader.module.scss'
 import {ReactComponent as ChevronLeft} from './ic_chevron.svg'
 
 const PageHeader = React.forwardRef((props, ref) =>{
     const {label, actionIcon, onActionClick=()=>{}, onChevronClick=()=>{}} = props
-    const {backRef=React.createRef(), actionRef=React.createRef()} = ref
+
+
+    const localBackRef = useRef(null)
+    const localActionRef =useRef(null)
+    const backRef = ref?.backRef || localBackRef
+    const actionRef = ref?.actionRef || localActionRef
+
     return (
         <header className={Style.PageHeader}>
             <button 

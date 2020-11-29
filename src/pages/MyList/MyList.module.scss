@@ -1,7 +1,8 @@
 @import "../../globals";
 
 .MyList {
-  margin-top: 95px;
+  @extend %pagediv;
+  height:auto;
 
   .Content {
     @extend %bodybox;

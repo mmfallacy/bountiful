@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Style from './MultiStepForm.module.scss'
-import FormStepper from './FormStepper/FormStepper'
-import PrimaryButton from '../PrimaryButton/PrimaryButton'
+import {FormStepper, PrimaryButton} from '../'
 
 export function MultiStepForm({className, children, onSubmit, backRef, onLastBack, onStepperClick}) {
     const formContent = React.Children.toArray(children)
