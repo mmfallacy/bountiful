@@ -86,7 +86,7 @@ function Main() {
       setListings(result)
     }
     onComponentMount()
-  })
+  }, [])
 
   const feed = listings.map(({ id, photo, title, price }) =>
     <FeedCard key={id} productId={id} imgSrc={photo} budget={price} product={title} />

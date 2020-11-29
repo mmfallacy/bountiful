@@ -33,10 +33,13 @@ export default function NewRequest(props) {
             />
             <BackgroundBlob className={Style.BackgroundBlob}/>
             <MultiStepForm className={Style.MultiStepForm}
-                onSubmit={(e)=>{
+                onSubmit={async (e)=>{
                     console.log("Submitted")
                     console.log(formData)
-                    alert("Submitted Request!")
+                    const {productName,productImage,description,price} = formData
+                    await API. createListing(productName, description, price, productImage)
+                    alert ("submitted")
+                    history.goBack()
                 }}
                 onLastBack={(e)=>{
                     console.log("Back")
